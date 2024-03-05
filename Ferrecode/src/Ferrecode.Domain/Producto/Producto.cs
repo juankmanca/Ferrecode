@@ -1,4 +1,5 @@
 ﻿using Ferrecode.Domain.Abstractions;
+using Ferrecode.Domain.Producto.Events;
 
 namespace Ferrecode.Domain.Producto
 {
@@ -14,7 +15,7 @@ namespace Ferrecode.Domain.Producto
 
         }
 
-        public Producto(Guid iD, string? nombre, DateTime fechaCreacion, DateTime fechaActualizacion,
+        private Producto(Guid iD, string? nombre, DateTime fechaCreacion, DateTime fechaActualizacion,
             Precio? precio, Medida? medida, Peso? peso, VolumenEmpaque? volumenEmpaque
             ) : base(iD, nombre, fechaCreacion, fechaActualizacion)
         {
@@ -22,6 +23,23 @@ namespace Ferrecode.Domain.Producto
             Medida = medida;
             Peso = peso;
             VolumenEmpaque = volumenEmpaque;
+        }
+
+        public static Producto Create(string? nombre, Precio? precio, Medida? medida, Peso? peso, VolumenEmpaque? volumenEmpaque)
+        {
+            var producto = new Producto(
+                Guid.NewGuid(),
+                nombre,
+                DateTime.Now,
+                DateTime.Now,
+                precio,
+                medida,
+                peso,
+                volumenEmpaque
+                );
+
+            producto.RaiseDomainEvent(new CreateProductoDomainEvent(producto.ID));
+            return producto;
         }
 
     }

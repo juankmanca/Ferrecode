@@ -2,10 +2,11 @@
 {
     public abstract class Concepto
     {
-        public Guid ID { get; private set; }
+        public Guid ID { get; init; }
         public string? Nombre { get; private set; }
         public DateTime FechaCreacion { get; private set; }
         public DateTime FechaActualizacion { get; private set; }
+
         private readonly List<IDomainEvent> _domainEvents = new();
 
         public Concepto()
