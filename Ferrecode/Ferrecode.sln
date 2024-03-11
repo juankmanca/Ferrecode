@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ferrecode.Domain", "src\Ferrecode.Domain\Ferrecode.Domain.csproj", "{A965D3E1-AC38-4FCD-B683-816B86C4745A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ferrecode.Domain", "src\Ferrecode.Domain\Ferrecode.Domain.csproj", "{A965D3E1-AC38-4FCD-B683-816B86C4745A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ferrecode.Application", "src\Ferrecode.Application\Ferrecode.Application.csproj", "{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +19,17 @@ Global
 		{A965D3E1-AC38-4FCD-B683-816B86C4745A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A965D3E1-AC38-4FCD-B683-816B86C4745A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A965D3E1-AC38-4FCD-B683-816B86C4745A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A965D3E1-AC38-4FCD-B683-816B86C4745A} = {F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}
+		{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0} = {F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DC90A0E-712C-435F-B20F-340887B581B3}
