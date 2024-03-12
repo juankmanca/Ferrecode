@@ -1,7 +1,7 @@
 ﻿using Ferrecode.Application.Abstractions.Messaging;
 using Ferrecode.Domain.Productos;
 
-namespace Ferrecode.Application.Productos
+namespace Ferrecode.Application.Productos.CreateProducto
 {
     public record CreateProductoCommand
         (

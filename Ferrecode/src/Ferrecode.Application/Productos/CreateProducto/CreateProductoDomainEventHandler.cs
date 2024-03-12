@@ -1,7 +1,7 @@
 ﻿using Ferrecode.Domain.Productos.Events;
 using MediatR;
 
-namespace Ferrecode.Application.Productos
+namespace Ferrecode.Application.Productos.CreateProducto
 {
     public sealed class CreateProductoDomainEventHandler : INotificationHandler<CreateProductoDomainEvent>
     {

@@ -5,7 +5,7 @@ using Ferrecode.Domain.Inventarios;
 using Ferrecode.Domain.Productos;
 using Ferrecode.Domain.PuntosDeVenta;
 
-namespace Ferrecode.Application.Productos
+namespace Ferrecode.Application.Productos.CreateProducto
 {
     internal sealed class CreateProductoCommandHandler : ICommandHandler<CreateProductoCommand, Guid>
     {
@@ -45,7 +45,7 @@ namespace Ferrecode.Application.Productos
                 {
                     _productoRepository.Add(producto);
                     await _unitOfWork.SaveChangesAsync();
-                    return product.ID;
+                    return product!.ID;
                 }
                 else
                 {

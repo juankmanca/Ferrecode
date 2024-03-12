@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Ferrecode.Application.Productos
+namespace Ferrecode.Application.Productos.CreateProducto
 {
     internal class CreateProductoCommandValidator : AbstractValidator<CreateProductoCommand>
     {

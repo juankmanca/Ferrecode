@@ -30,8 +30,8 @@ namespace Ferrecode.Domain.Productos
             var producto = new Producto(
                 Guid.NewGuid(),
                 nombre,
-                DateTime.Now,
-                DateTime.Now,
+                DateTime.UtcNow,
+                DateTime.UtcNow,
                 precio,
                 medida,
                 peso,
