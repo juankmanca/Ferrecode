@@ -4,11 +4,7 @@ namespace Ferrecode.Domain.Pedidos
 {
     public sealed class Pedido : Concepto
     {
-        public Pedido()
-        {
-
-        }
-
+      
         public Pedido(Guid iD, string? nombre, DateTime fechaCreacion, DateTime fechaActualizacion,
             DateTime fechaCierre, DateTime fechaFacturacion, Guid iDCliente) : base(iD, nombre, fechaCreacion, fechaActualizacion)
         {

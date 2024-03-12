@@ -1,7 +1,14 @@
-﻿namespace Ferrecode.Domain.Inventarios
+﻿using Ferrecode.Domain.Abstractions;
+
+namespace Ferrecode.Domain.Inventarios
 {
-    public sealed class Inventario
+    public sealed class Inventario : Entity
     {
+        public Inventario(Guid iD) : base(iD)
+        {
+
+        }
+
         public Guid IDPuntoDeVenta { get; private set; }
         public Guid IDProductos { get; private set; }
         public Cantidad? Cantidad { get; private set; }

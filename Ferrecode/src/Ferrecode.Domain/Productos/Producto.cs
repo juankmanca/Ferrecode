@@ -10,11 +10,7 @@ namespace Ferrecode.Domain.Productos
         public Peso? Peso { get; private set; }
         public VolumenEmpaque? VolumenEmpaque { get; private set; }
 
-        public Producto()
-        {
-
-        }
-
+       
         private Producto(Guid iD, string? nombre, DateTime fechaCreacion, DateTime fechaActualizacion,
             Precio? precio, Medida? medida, Peso? peso, VolumenEmpaque? volumenEmpaque
             ) : base(iD, nombre, fechaCreacion, fechaActualizacion)
