@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ferrecode.Domain", "src\Fer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ferrecode.Application", "src\Ferrecode.Application\Ferrecode.Application.csproj", "{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ferrecode.Infrastructure", "src\Ferrecode.Infrastructure\Ferrecode.Infrastructure.csproj", "{15DADF79-E423-4097-9D2D-216C613DE4FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ferrecode.Infrastructure", "src\Ferrecode.Infrastructure\Ferrecode.Infrastructure.csproj", "{15DADF79-E423-4097-9D2D-216C613DE4FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ferrecode.Api", "src\Ferrecode.Api\Ferrecode.Api.csproj", "{8D29E355-4EF5-4F3B-82F1-8DF8AE3195A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{15DADF79-E423-4097-9D2D-216C613DE4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15DADF79-E423-4097-9D2D-216C613DE4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15DADF79-E423-4097-9D2D-216C613DE4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D29E355-4EF5-4F3B-82F1-8DF8AE3195A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D29E355-4EF5-4F3B-82F1-8DF8AE3195A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D29E355-4EF5-4F3B-82F1-8DF8AE3195A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D29E355-4EF5-4F3B-82F1-8DF8AE3195A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{A965D3E1-AC38-4FCD-B683-816B86C4745A} = {F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}
 		{7DEFB304-1A9E-4C82-B7F5-6B645632DAA0} = {F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}
 		{15DADF79-E423-4097-9D2D-216C613DE4FD} = {F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}
+		{8D29E355-4EF5-4F3B-82F1-8DF8AE3195A1} = {F429D2AC-0B01-4F0F-9056-281CEAB1ADCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DC90A0E-712C-435F-B20F-340887B581B3}

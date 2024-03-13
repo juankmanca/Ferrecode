@@ -11,6 +11,10 @@
             ID = iD;
         }
 
+        protected Entity()
+        {
+        }
+
         public IReadOnlyList<IDomainEvent> GetDomainEvents() => _domainEvents.ToList();
 
         public void ClearDomainEvents()

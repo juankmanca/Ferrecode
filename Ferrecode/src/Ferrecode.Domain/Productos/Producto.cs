@@ -5,6 +5,7 @@ namespace Ferrecode.Domain.Productos
 {
     public class Producto : Concepto
     {
+        private Producto() { }
         public Precio? Precio { get; private set; }
         public Medida? Medida { get; private set; }
         public Peso? Peso { get; private set; }

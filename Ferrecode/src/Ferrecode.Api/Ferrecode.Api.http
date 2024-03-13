@@ -1,0 +1,6 @@
+@Ferrecode.Api_HostAddress = http://localhost:5246
+
+GET {{Ferrecode.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

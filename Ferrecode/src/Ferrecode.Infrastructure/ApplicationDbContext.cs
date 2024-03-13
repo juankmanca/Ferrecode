@@ -33,6 +33,7 @@ namespace Ferrecode.Infrastructure
 
                 return result;
             }
+            // Control de de error de concurrencia
             catch (DbUpdateConcurrencyException ex)
             {
                 throw new ConcurrencyException("La excepción por concurrencia se disparo", ex);
@@ -43,7 +44,7 @@ namespace Ferrecode.Infrastructure
         {
             // Llama a todas las clases que esten extendiendose de Entity
             var domainEvents = ChangeTracker
-                .Entries<Concepto>()
+                .Entries<Entity>()
                 .Select(entry => entry.Entity)
                 .SelectMany(entity =>
                 {

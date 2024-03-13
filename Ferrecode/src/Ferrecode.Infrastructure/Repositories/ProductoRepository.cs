@@ -1,5 +1,6 @@
 ﻿using Ferrecode.Domain.Productos;
 using Ferrecode.Domain.PuntosDeVenta;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ferrecode.Infrastructure.Repositories
 {
@@ -29,14 +30,18 @@ namespace Ferrecode.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Producto> GetByNameAsync(string Nombre)
+        public async Task<Producto?> GetByNameAsync(string Nombre)
         {
-            throw new NotImplementedException();
+            var product = await _DbContext.Set<Producto>().FirstOrDefaultAsync(x => x.Nombre!.ToLower() == Nombre.ToLower());
+
+            return product;
         }
 
-        public Task<PuntoDeVenta> GetStoreById(Guid ID)
+        public async Task<PuntoDeVenta?> GetStoreById(Guid ID)
         {
-            throw new NotImplementedException();
+            var store = await _DbContext.Set<PuntoDeVenta>().FirstOrDefaultAsync(x => x.ID == ID);
+
+            return store;
         }
     }
 }

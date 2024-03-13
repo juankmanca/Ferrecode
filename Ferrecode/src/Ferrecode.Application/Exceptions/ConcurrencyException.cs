@@ -4,7 +4,7 @@
     {
         public ConcurrencyException(string message, Exception innerException) : base(message, innerException)
         {
-
+            
         }
     }
 }

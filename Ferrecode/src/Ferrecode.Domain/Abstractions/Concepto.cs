@@ -2,11 +2,11 @@
 {
     public abstract class Concepto : Entity
     {
+        protected Concepto(): base() { }
+
         public string? Nombre { get; private set; }
         public DateTime FechaCreacion { get; private set; }
         public DateTime FechaActualizacion { get; private set; }
-
-        public Concepto(Guid ID) : base(ID) { }
 
         protected Concepto(Guid ID, string? nombre, DateTime fechaCreacion, DateTime fechaActualizacion) : base(ID)
         {

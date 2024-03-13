@@ -4,7 +4,7 @@ namespace Ferrecode.Domain.Inventarios
 {
     public sealed class Inventario : Entity
     {
-        public Inventario(Guid iD) : base(iD)
+        private Inventario()
         {
 
         }

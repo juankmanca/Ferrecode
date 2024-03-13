@@ -1,5 +1,11 @@
 ﻿using Ferrecode.Application.Abstractions.Clock;
+using Ferrecode.Application.Abstractions.Data;
+using Ferrecode.Domain.Abstractions;
+using Ferrecode.Domain.Inventarios;
+using Ferrecode.Domain.Productos;
 using Ferrecode.Infrastructure.Clock;
+using Ferrecode.Infrastructure.Data;
+using Ferrecode.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +26,13 @@ namespace Ferrecode.Infrastructure
             {
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IInventarioRepository, InventarioRepository>();
+            services.AddScoped<IProductoRepository, ProductoRepository>();
+
+            services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+
+            services.AddSingleton<ISqlConnectionFactory>(_ => new SqlConnectionFactory(connectionString));
 
             return services;
         }

@@ -12,7 +12,7 @@ namespace Ferrecode.Infrastructure.Configurations
         {
             builder.ToTable("Inventarios");
             builder.HasKey(x => x.ID);
-            builder.Property(x => x.Cantidad);
+            builder.Property(x => x.Cantidad).HasConversion(x => x!.Value, value => new Cantidad(value)).IsRequired();
             builder.Property(x => x.FechaActualizacion);
 
             builder.HasOne<Producto>()
