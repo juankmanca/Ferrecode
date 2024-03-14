@@ -36,6 +36,7 @@ namespace Ferrecode.Domain.Productos
                 );
 
             producto.RaiseDomainEvent(new CreateProductoDomainEvent(producto.ID));
+
             return producto;
         }
 

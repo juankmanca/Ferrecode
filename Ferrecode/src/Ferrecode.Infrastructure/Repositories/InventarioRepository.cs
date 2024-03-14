@@ -8,11 +8,8 @@ namespace Ferrecode.Infrastructure.Repositories
     {
         public InventarioRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+
         }
 
-        public bool AddNewProduct(Producto producto, PuntoDeVenta puntoDeVenta)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

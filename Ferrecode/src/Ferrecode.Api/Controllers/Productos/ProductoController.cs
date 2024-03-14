@@ -33,7 +33,7 @@ namespace Ferrecode.Api.Controllers.Productos
 
             if (result.IsFailure) return BadRequest(result.Error);
 
-            return CreatedAtAction(nameof(GetById), new { id = result.Value });
+            return Created();
         }
 
         [HttpGet("{id}")]

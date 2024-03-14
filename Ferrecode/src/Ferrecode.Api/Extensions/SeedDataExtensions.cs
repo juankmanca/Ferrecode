@@ -2,10 +2,17 @@
 using Dapper;
 using Ferrecode.Application.Abstractions.Data;
 using Ferrecode.Domain.Productos;
+using System.Data;
 using System.Globalization;
 
 namespace Ferrecode.Api.Extensions
 {
+    public class ObjectsToSave
+    {
+        public List<object>? Items { get; set; }
+        public string sql { get; set; } = string.Empty;
+    }
+
     public static class SeedDataExtensions
     {
         public static void SeedData(this IApplicationBuilder app)
@@ -17,11 +24,49 @@ namespace Ferrecode.Api.Extensions
 
             using var connection = sqlConnectionFactory.CreateConnection();
 
+            //CreateProducts(connection);
+            CreatePuntoDeVenta(connection);
+        }
+
+        private static void CreatePuntoDeVenta(IDbConnection connection)
+        {
+            var faker = new Faker();
+
+            List<object> puntosDeVenta = new();
+
+            puntosDeVenta.Add(new
+            {
+                ID = Guid.NewGuid(),
+                Nombre = faker.Commerce.ProductName(),
+                FechaCreacion = DateTime.UtcNow,
+                FechaActualizacion = DateTime.UtcNow
+            });
+
+            const string sql = """
+                INSERT INTO [dbo].[PuntosDeVenta]
+                      ([ID]
+                      ,[Nombre]
+                      ,[FechaCreacion]
+                      ,[FechaActualizacion])
+                VALUES
+                      (
+                      @ID,
+                        @Nombre,
+                        @FechaCreacion,
+                        @FechaActualizacion
+                      )
+                """;
+
+            connection.Execute(sql, puntosDeVenta);
+        }
+
+        private static void CreateProducts(IDbConnection connection)
+        {
             var faker = new Faker();
 
             List<object> productos = new();
 
-            for(var i = 0; i < 50;i++)
+            for (var i = 0; i < 50; i++)
             {
                 productos.Add(new
                 {
@@ -63,6 +108,8 @@ namespace Ferrecode.Api.Extensions
                 """;
 
             connection.Execute(sql, productos);
+
         }
+
     }
 }

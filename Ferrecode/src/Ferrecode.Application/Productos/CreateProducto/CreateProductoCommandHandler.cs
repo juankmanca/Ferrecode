@@ -39,18 +39,17 @@ namespace Ferrecode.Application.Productos.CreateProducto
                         request.volumenEmpaque
                     );
 
-                bool isSuccess = _inventarioRepository.AddNewProduct(producto, storeExists);
+                var Inventory = Inventario.Create(
+                        storeExists.ID,
+                        producto.ID
+                    );
 
-                if (isSuccess)
-                {
-                    _productoRepository.Add(producto);
-                    await _unitOfWork.SaveChangesAsync();
-                    return product!.ID;
-                }
-                else
-                {
-                    return Result.Failure<Guid>(ProductoErrors.ErrorSavingProduct);
-                }
+                _productoRepository.Add(producto);
+                _inventarioRepository.Add(Inventory);
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return producto!.ID;
             }
             catch (ConcurrencyException)
             {
