@@ -2,6 +2,7 @@
 using Ferrecode.Application.Productos.CreateProducto;
 using Ferrecode.Application.Productos.DeleteProducto;
 using Ferrecode.Application.Productos.GetProductos;
+using Ferrecode.Application.Productos.ManagmentInventory;
 using Ferrecode.Application.Productos.UpdateProducto;
 using Ferrecode.Domain.Productos;
 using MediatR;
@@ -86,6 +87,21 @@ namespace Ferrecode.Api.Controllers.Productos
             var result = await _sender.Send(command, cancellationToken);
 
             if(result.IsFailure) return BadRequest(result.Error);
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateStock([FromBody] UpdateStockRequest updateStockRequest, CancellationToken cancellationToken)
+        {
+            var request = new UpdateStockCommand(
+                updateStockRequest.IDProducto,
+                updateStockRequest.Cantidad
+                );
+
+            var result = await _sender.Send(request, cancellationToken);
+
+            if (result.IsFailure) return BadRequest(result.Error);
 
             return Ok();
         }

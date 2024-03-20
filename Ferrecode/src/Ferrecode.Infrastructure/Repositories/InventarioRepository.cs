@@ -1,6 +1,5 @@
 ﻿using Ferrecode.Domain.Inventarios;
-using Ferrecode.Domain.Productos;
-using Ferrecode.Domain.PuntosDeVenta;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ferrecode.Infrastructure.Repositories
 {
@@ -11,5 +10,11 @@ namespace Ferrecode.Infrastructure.Repositories
 
         }
 
+        public async Task<Inventario?> GetByProductIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var Inventory = await _DbContext.Set<Inventario>().FirstOrDefaultAsync(x => x.IDProducto == id, cancellationToken);
+
+            return Inventory;
+        }
     }
 }

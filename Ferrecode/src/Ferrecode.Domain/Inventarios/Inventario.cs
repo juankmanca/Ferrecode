@@ -7,7 +7,7 @@ namespace Ferrecode.Domain.Inventarios
     {
         public Guid IDPuntoDeVenta { get; private set; }
         public Guid IDProducto { get; private set; }
-        public Cantidad? Cantidad { get; private set; }
+        public Cantidad? Cantidad { get; set; }
         public DateTime FechaActualizacion { get; private set; }
 
 
