@@ -24,7 +24,9 @@ namespace Ferrecode.Application.Productos.DeleteProducto
             Producto? product = await _productoRepository.GetByIdAsync(request.IDProducto!, cancellationToken);
             if (product is null) return Result.Failure<Producto>(ProductoErrors.NotFound);
 
-            await _productoRepository.DeleteAsync(product, cancellationToken);
+            product.Status = false;
+
+            await _productoRepository.UpdateAsync(product, cancellationToken);
 
             try
             {

@@ -13,6 +13,7 @@ namespace Ferrecode.Infrastructure.Configurations
             builder.Property(x => x.Nombre);
             builder.Property(x => x.FechaActualizacion);
             builder.Property(x => x.FechaCreacion);
+            builder.Property(x => x.Status);
 
             //builder.OwnsOne(x => x.Precio).Property(x => x.Value).HasColumnName("Precio");
             builder.Property(x => x.Precio).HasConversion(x => x!.Value, value => new Precio(value));

@@ -24,8 +24,8 @@ namespace Ferrecode.Application.Productos.GetProductos
                 	P.Nombre,
                 	P.Precio, 
                 	I.Cantidad 
-                  FROM Inventarios I LEFT JOIN Productos P ON P.ID = I.IDProductos 
-                  WHERE I.IDPuntoDeVenta = @IDPuntoDeVenta
+                  FROM Inventarios I LEFT JOIN Productos P ON P.ID = I.IDProducto 
+                  WHERE I.IDPuntoDeVenta = @IDPuntoDeVenta AND P.Status = 1
                 """;
 
             var productos = await connection.QueryAsync<ProductoSQLResponse>(

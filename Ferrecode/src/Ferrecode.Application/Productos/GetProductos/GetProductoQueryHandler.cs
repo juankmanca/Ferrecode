@@ -23,7 +23,7 @@ namespace Ferrecode.Application.Productos.GetProductos
                     ID,
                     Nombre,
                     Precio
-                FROM Productos WHERE ID = @IDProducto
+                FROM Productos WHERE ID = @IDProducto AND Status = 1
                 """;
 
             var producto = await connection.QueryFirstOrDefaultAsync<ProductoResponse>(
