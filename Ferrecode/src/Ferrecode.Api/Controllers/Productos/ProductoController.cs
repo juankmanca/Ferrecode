@@ -1,5 +1,8 @@
-﻿using Ferrecode.Application.Productos.CreateProducto;
+﻿using Azure.Core;
+using Ferrecode.Application.Productos.CreateProducto;
+using Ferrecode.Application.Productos.DeleteProducto;
 using Ferrecode.Application.Productos.GetProductos;
+using Ferrecode.Application.Productos.UpdateProducto;
 using Ferrecode.Domain.Productos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -46,16 +49,45 @@ namespace Ferrecode.Api.Controllers.Productos
             return result.IsSuccess ? Ok(result) : NotFound();
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Update(int id, [FromBody] ProductoDto productoDto)
-        //{
-        //    // Lógica para actualizar un producto existente con el ID proporcionado
-        //}
+        [HttpGet("{IDPuntoDeVenta}")]
+        public async Task<IActionResult> GetAll(Guid IDPuntoDeVenta, CancellationToken cancellationToken)
+        {
+            var query = new GetProductosQuery(IDPuntoDeVenta);
 
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    // Lógica para eliminar un producto existente con el ID proporcionado
-        //}
+            var result = await _sender.Send(query, cancellationToken);
+
+            return result.IsSuccess ? Ok(result) : NotFound();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateProductoRequest request, CancellationToken cancellationToken)
+        {
+            var query = new UpdateProductCommand(
+                                request.Nombre,
+                                new Precio(request.Precio),
+                                new Medida(request.Medida, request.UnidadDeMedida),
+                                new Peso(request.Peso),
+                                new VolumenEmpaque(request.VolumenEmpaque),
+                                request.ID
+                                 );
+
+            var result = await _sender.Send(query, cancellationToken);
+
+            if (result.IsFailure) return BadRequest(result.Error);
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+        {
+            var command = new DeleteProductoCommand(id);
+
+            var result = await _sender.Send(command, cancellationToken);
+
+            if(result.IsFailure) return BadRequest(result.Error);
+
+            return Ok();
+        }
     }
 }

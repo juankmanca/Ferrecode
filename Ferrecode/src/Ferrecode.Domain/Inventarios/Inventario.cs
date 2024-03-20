@@ -1,9 +1,17 @@
 ﻿using Ferrecode.Domain.Abstractions;
+using Ferrecode.Domain.Productos;
 
 namespace Ferrecode.Domain.Inventarios
 {
     public sealed class Inventario : Entity
     {
+        public Guid IDPuntoDeVenta { get; private set; }
+        public Guid IDProducto { get; private set; }
+        public Cantidad? Cantidad { get; private set; }
+        public DateTime FechaActualizacion { get; private set; }
+
+
+
         public static Inventario Create(Guid iDPuntoDeVenta, Guid iDProductos)
         {
             var Inventory = new Inventario(
@@ -25,14 +33,11 @@ namespace Ferrecode.Domain.Inventarios
         private Inventario(Guid iDPuntoDeVenta, Guid iDProductos, Cantidad? cantidad, DateTime fechaActualizacion, Guid ID) : base(ID)
         {
             IDPuntoDeVenta = iDPuntoDeVenta;
-            IDProductos = iDProductos;
+            IDProducto = iDProductos;
             Cantidad = cantidad;
             FechaActualizacion = fechaActualizacion;
         }
 
-        public Guid IDPuntoDeVenta { get; private set; }
-        public Guid IDProductos { get; private set; }
-        public Cantidad? Cantidad { get; private set; }
-        public DateTime FechaActualizacion { get; private set; }
+       
     }
 }

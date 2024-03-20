@@ -17,7 +17,7 @@ namespace Ferrecode.Infrastructure.Configurations
 
             builder.HasOne<Producto>()
                 .WithMany()
-                .HasForeignKey(inv => inv.IDProductos);
+                .HasForeignKey(inv => inv.IDProducto);
 
             builder.HasOne<PuntoDeVenta>()
                 .WithMany()

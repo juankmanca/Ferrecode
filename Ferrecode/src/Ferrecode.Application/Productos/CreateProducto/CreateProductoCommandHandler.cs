@@ -23,10 +23,10 @@ namespace Ferrecode.Application.Productos.CreateProducto
         public async Task<Result<Guid>> Handle(CreateProductoCommand request, CancellationToken cancellationToken)
         {
             // Llamamos al repository que se encarga de guardar en la base de datos
-            PuntoDeVenta? storeExists = await _productoRepository.GetStoreById(request.IDPuntoDeVenta);
+            PuntoDeVenta? storeExists = await _productoRepository.GetStoreById(request.IDPuntoDeVenta, cancellationToken);
             if (storeExists is null) return Result.Failure<Guid>(PuntoDeVentaErrors.NotFound);
 
-            Producto? product = await _productoRepository.GetByNameAsync(request.nombre!);
+            Producto? product = await _productoRepository.GetByNameAsync(request.nombre!, cancellationToken);
             if (product is not null) return Result.Failure<Guid>(ProductoErrors.Duplicated);
 
             try
@@ -47,7 +47,7 @@ namespace Ferrecode.Application.Productos.CreateProducto
                 _productoRepository.Add(producto);
                 _inventarioRepository.Add(Inventory);
 
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                 return producto!.ID;
             }

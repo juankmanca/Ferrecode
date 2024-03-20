@@ -16,7 +16,34 @@ namespace Ferrecode.Infrastructure.Repositories
 
         public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _DbContext.Set<T>().FirstOrDefaultAsync(User => User.ID == id);
+            return await _DbContext.Set<T>().FirstOrDefaultAsync(User => User.ID == id, cancellationToken);
+        }
+
+        public async Task<T?> UpdateAsync(T entity, CancellationToken cancellationToken = default)
+        {
+            var existingEntity = await GetByIdAsync(entity.ID, cancellationToken);
+            if (existingEntity != null)
+            {
+                _DbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
+            }
+
+            return existingEntity;
+        }
+
+        public async Task<T?> DeleteAsync(T entity, CancellationToken cancellationToken = default)
+        {
+            var existingEntity = await GetByIdAsync(entity.ID, cancellationToken);
+            if (existingEntity != null)
+            {
+                _DbContext.Remove(existingEntity);
+            }
+
+            return existingEntity;
+        }
+
+        public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _DbContext.Set<T>().ToListAsync(cancellationToken);
         }
 
         public void Add(T entity)

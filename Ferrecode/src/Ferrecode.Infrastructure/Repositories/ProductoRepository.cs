@@ -10,36 +10,16 @@ namespace Ferrecode.Infrastructure.Repositories
         {
         }
 
-        public Task DeleteProducto(Producto producto, CancellationToken cancellationToken = default)
+        public async Task<Producto?> GetByNameAsync(string Nombre, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task EditProductoAsync(Producto producto, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Producto>> GetAllAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Producto> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Producto?> GetByNameAsync(string Nombre)
-        {
-            var product = await _DbContext.Set<Producto>().FirstOrDefaultAsync(x => x.Nombre!.ToLower() == Nombre.ToLower());
+            var product = await _DbContext.Set<Producto>().FirstOrDefaultAsync(x => x.Nombre!.ToLower() == Nombre.ToLower(), cancellationToken);
 
             return product;
         }
 
-        public async Task<PuntoDeVenta?> GetStoreById(Guid ID)
+        public async Task<PuntoDeVenta?> GetStoreById(Guid ID, CancellationToken cancellationToken = default)
         {
-            var store = await _DbContext.Set<PuntoDeVenta>().FirstOrDefaultAsync(x => x.ID == ID);
+            var store = await _DbContext.Set<PuntoDeVenta>().FirstOrDefaultAsync(x => x.ID == ID, cancellationToken);
 
             return store;
         }
