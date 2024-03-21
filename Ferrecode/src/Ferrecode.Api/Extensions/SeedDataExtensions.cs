@@ -26,6 +26,22 @@ namespace Ferrecode.Api.Extensions
 
             //CreateProducts(connection);
             CreatePuntoDeVenta(connection);
+            CreateTiposDeDocumento(connection);
+        }
+
+        private static void CreateTiposDeDocumento(IDbConnection connection)
+        {
+            string sql = """
+                INSERT INTO TiposDeDocumento (
+                    Nombre,
+                    Acronimo)
+                VALUES 
+                    ('Cedula De Ciudadanía', 'CC'),
+                    ('Cedula De Extranjeria', 'CE'),
+                    ('Pasaporte', 'PP'),
+                    ('NIT', 'NIT')
+                """;
+            connection.Execute(sql);
         }
 
         private static void CreatePuntoDeVenta(IDbConnection connection)

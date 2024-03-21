@@ -9,6 +9,8 @@ namespace Ferrecode.Domain.Clientes
         public Email? Email { get; private set; }
         public Guid IDPuntoDeVenta { get; private set; }
 
+        private Cliente() { }
+
         private Cliente(Guid iD, string? nombre, DateTime fechaCreacion, DateTime fechaActualizacion,
             Documento? documento, Direccion? direccion, Email? email, Guid iDPuntoDeVenta) : base(iD, nombre, fechaCreacion, fechaActualizacion)
         {

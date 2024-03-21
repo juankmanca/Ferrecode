@@ -4,6 +4,7 @@ using Ferrecode.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ferrecode.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240321215701_AddForeignKeyNameIDTipoDeDocumento")]
+    partial class AddForeignKeyNameIDTipoDeDocumento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -253,21 +256,30 @@ namespace Ferrecode.Infrastructure.Migrations
                             b1.Property<Guid>("ClienteID")
                                 .HasColumnType("uniqueidentifier");
 
+                            b1.Property<int?>("IDTipoDocumento")
+                                .HasColumnType("int");
+
                             b1.Property<string>("NumeroDocumento")
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)")
                                 .HasColumnName("NumeroDocumento");
 
                             b1.Property<int>("TipoDocumento")
-                                .HasColumnType("int")
-                                .HasColumnName("IDTipoDocumento");
+                                .HasColumnType("int");
 
                             b1.HasKey("ClienteID");
+
+                            b1.HasIndex("IDTipoDocumento");
 
                             b1.ToTable("Clientes");
 
                             b1.WithOwner()
                                 .HasForeignKey("ClienteID");
+
+                            b1.HasOne("Ferrecode.Domain.Clientes.TipoDeDocumento", null)
+                                .WithMany()
+                                .HasForeignKey("IDTipoDocumento")
+                                .HasConstraintName("IDTipoDocumento");
                         });
 
                     b.Navigation("Direccion");

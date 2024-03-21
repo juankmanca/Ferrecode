@@ -10,7 +10,7 @@ namespace Ferrecode.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<DetallePedido> builder)
         {
-            builder.ToTable("Productos");
+            builder.ToTable("DetallePedidos");
             builder.HasKey(x => x.ID);
 
             builder.HasOne<Pedido>()
@@ -20,6 +20,8 @@ namespace Ferrecode.Infrastructure.Configurations
             builder.HasOne<Producto>()
             .WithMany()
             .HasForeignKey(Detalle => Detalle.IDProducto);
+
+            builder.Property(x => x.Cantidad).HasConversion(x => x.Value, value => new Cantidad(value));
         }
     }
 }

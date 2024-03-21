@@ -4,6 +4,7 @@ using Ferrecode.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ferrecode.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240321213008_ClientModule")]
+    partial class ClientModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,27 +56,6 @@ namespace Ferrecode.Infrastructure.Migrations
                     b.ToTable("Clientes", (string)null);
                 });
 
-            modelBuilder.Entity("Ferrecode.Domain.Clientes.TipoDeDocumento", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Acronimo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("TiposDeDocumento", (string)null);
-                });
-
             modelBuilder.Entity("Ferrecode.Domain.DetallePedidos.DetallePedido", b =>
                 {
                     b.Property<Guid>("ID")
@@ -103,9 +85,6 @@ namespace Ferrecode.Infrastructure.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaActualizacion")
                         .HasColumnType("datetime2");
@@ -303,6 +282,27 @@ namespace Ferrecode.Infrastructure.Migrations
                         .HasForeignKey("IDPuntoDeVenta")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("Ferrecode.Domain.Inventarios.Cantidad", "Cantidad", b1 =>
+                        {
+                            b1.Property<Guid>("InventarioID")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Value")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasDefaultValue(0)
+                                .HasColumnName("Cantidad");
+
+                            b1.HasKey("InventarioID");
+
+                            b1.ToTable("Inventarios");
+
+                            b1.WithOwner()
+                                .HasForeignKey("InventarioID");
+                        });
+
+                    b.Navigation("Cantidad");
                 });
 
             modelBuilder.Entity("Ferrecode.Domain.Pedidos.Pedido", b =>

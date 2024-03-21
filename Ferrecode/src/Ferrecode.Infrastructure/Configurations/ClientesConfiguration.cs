@@ -44,6 +44,7 @@ namespace Ferrecode.Infrastructure.Configurations
             builder.HasOne<PuntoDeVenta>()
                 .WithMany()
                 .HasForeignKey(cliente => cliente.IDPuntoDeVenta);
+
         }
     }
 }
