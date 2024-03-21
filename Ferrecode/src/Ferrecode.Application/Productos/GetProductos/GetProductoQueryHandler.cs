@@ -5,7 +5,7 @@ using Ferrecode.Domain.Abstractions;
 
 namespace Ferrecode.Application.Productos.GetProductos
 {
-    internal sealed class GetProductoQueryHandler : IQueryHandler<GetProductoQuery, ProductoResponse>
+    internal sealed class GetProductoQueryHandler : IQueryHandler<GetProductoQuery, GetProductoResponse>
     {
         private readonly ISqlConnectionFactory _connectionFactory;
 
@@ -14,7 +14,7 @@ namespace Ferrecode.Application.Productos.GetProductos
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<Result<ProductoResponse>> Handle(GetProductoQuery request, CancellationToken cancellationToken)
+        public async Task<Result<GetProductoResponse>> Handle(GetProductoQuery request, CancellationToken cancellationToken)
         {
             using var connection = _connectionFactory.CreateConnection();
 
@@ -26,13 +26,13 @@ namespace Ferrecode.Application.Productos.GetProductos
                 FROM Productos WHERE ID = @IDProducto AND Status = 1
                 """;
 
-            var producto = await connection.QueryFirstOrDefaultAsync<ProductoResponse>(
+            var producto = await connection.QueryFirstOrDefaultAsync<GetProductoResponse>(
                     sql,
                     new // Objeto de tipo anonimo
                     {
                         request.IDProducto,
                     }
-                );
+                    );
 
             return producto!;
         }

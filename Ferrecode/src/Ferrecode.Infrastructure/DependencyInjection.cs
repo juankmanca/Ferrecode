@@ -1,8 +1,10 @@
 ﻿using Ferrecode.Application.Abstractions.Clock;
 using Ferrecode.Application.Abstractions.Data;
 using Ferrecode.Domain.Abstractions;
+using Ferrecode.Domain.Clientes;
 using Ferrecode.Domain.Inventarios;
 using Ferrecode.Domain.Productos;
+using Ferrecode.Domain.PuntosDeVenta;
 using Ferrecode.Infrastructure.Clock;
 using Ferrecode.Infrastructure.Data;
 using Ferrecode.Infrastructure.Repositories;
@@ -29,6 +31,8 @@ namespace Ferrecode.Infrastructure
 
             services.AddScoped<IInventarioRepository, InventarioRepository>();
             services.AddScoped<IProductoRepository, ProductoRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IPuntoDeVentaRepository, PuntoDeVentaRepository>();
 
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 

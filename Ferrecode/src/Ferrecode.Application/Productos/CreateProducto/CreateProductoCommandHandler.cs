@@ -12,18 +12,20 @@ namespace Ferrecode.Application.Productos.CreateProducto
         private readonly IProductoRepository _productoRepository;
         private readonly IInventarioRepository _inventarioRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPuntoDeVentaRepository _puntoDeVentaRepository;
 
-        public CreateProductoCommandHandler(IProductoRepository productoRepository, IInventarioRepository inventarioRepository, IUnitOfWork unitOfWork)
+        public CreateProductoCommandHandler(IProductoRepository productoRepository, IInventarioRepository inventarioRepository, IUnitOfWork unitOfWork, IPuntoDeVentaRepository puntoDeVentaRepository)
         {
             _productoRepository = productoRepository;
             _inventarioRepository = inventarioRepository;
             _unitOfWork = unitOfWork;
+            _puntoDeVentaRepository = puntoDeVentaRepository;
         }
 
         public async Task<Result<Guid>> Handle(CreateProductoCommand request, CancellationToken cancellationToken)
         {
             // Llamamos al repository que se encarga de guardar en la base de datos
-            PuntoDeVenta? storeExists = await _productoRepository.GetStoreById(request.IDPuntoDeVenta, cancellationToken);
+            PuntoDeVenta? storeExists = await _puntoDeVentaRepository.GetByIdAsync(request.IDPuntoDeVenta, cancellationToken);
             if (storeExists is null) return Result.Failure<Guid>(PuntoDeVentaErrors.NotFound);
 
             Producto? product = await _productoRepository.GetByNameAsync(request.nombre!, cancellationToken);

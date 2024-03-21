@@ -1,22 +1,18 @@
 ﻿using Ferrecode.Application.Abstractions.Messaging;
 using Ferrecode.Application.Exceptions;
 using Ferrecode.Domain.Abstractions;
-using Ferrecode.Domain.Inventarios;
 using Ferrecode.Domain.Productos;
-using Ferrecode.Domain.PuntosDeVenta;
 
 namespace Ferrecode.Application.Productos.UpdateProducto
 {
     internal sealed class UpdateProductCommandHandle : ICommandHandler<UpdateProductCommand, Guid>
     {
         private readonly IProductoRepository _productoRepository;
-        private readonly IInventarioRepository _inventarioRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateProductCommandHandle(IProductoRepository productoRepository, IInventarioRepository inventarioRepository, IUnitOfWork unitOfWork)
+        public UpdateProductCommandHandle(IProductoRepository productoRepository, IUnitOfWork unitOfWork)
         {
             _productoRepository = productoRepository;
-            _inventarioRepository = inventarioRepository;
             _unitOfWork = unitOfWork;
         }
 

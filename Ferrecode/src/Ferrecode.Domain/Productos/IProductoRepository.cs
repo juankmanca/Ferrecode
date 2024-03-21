@@ -1,6 +1,4 @@
-﻿using Ferrecode.Domain.PuntosDeVenta;
-
-namespace Ferrecode.Domain.Productos
+﻿namespace Ferrecode.Domain.Productos
 {
     public interface IProductoRepository
     {
@@ -9,6 +7,6 @@ namespace Ferrecode.Domain.Productos
         Task<Producto?> UpdateAsync(Producto producto, CancellationToken cancellationToken = default);
         Task<Producto?> DeleteAsync(Producto producto, CancellationToken cancellationToken = default);
         void Add(Producto producto);
-        Task<PuntoDeVenta?> GetStoreById(Guid ID, CancellationToken cancellationToken = default);
+        //Task<PuntoDeVenta?> GetStoreById(Guid ID, CancellationToken cancellationToken = default);
     }
 }

@@ -2,9 +2,9 @@
 {
     public enum TiposDeDocumento
     {
-        CedulaDeCiudadanía = 0,
-        CedulaDeExtranjeria = 1,
-        Pasaporte = 2,
-        NIT = 3
+        CedulaDeCiudadanía = 0, //CC
+        CedulaDeExtranjeria = 1, //CE
+        Pasaporte = 2, //PP
+        NIT = 3 // (Número de Identificación Tributaria): NIT
     }
 }

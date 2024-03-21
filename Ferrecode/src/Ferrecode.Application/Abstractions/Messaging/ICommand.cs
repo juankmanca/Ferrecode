@@ -13,6 +13,7 @@ namespace Ferrecode.Application.Abstractions.Messaging
 
     }
 
+    // Esta interfaz me permite en el futuro agregar constrains de Validación
     public interface IBaseCommand
     { }
 }

@@ -1,6 +1,9 @@
 ﻿namespace Ferrecode.Domain.Clientes
 {
-    public record Direccion(string Value, int IDCiudad, int IDDepartamento)
+    public record Direccion(
+        string Value, 
+        int IDCiudad, 
+        int IDDepartamento)
     {
         public bool IsValid()
         {

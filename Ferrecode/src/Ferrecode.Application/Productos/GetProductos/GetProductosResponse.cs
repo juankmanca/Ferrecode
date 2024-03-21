@@ -1,6 +1,6 @@
 ﻿namespace Ferrecode.Application.Productos.GetProductos
 {
-    public sealed class ProductosResponse
+    public sealed class GetProductosResponse
     {
         public List<ProductoSQLResponse> products { get; set; } = new List<ProductoSQLResponse>(); 
     }

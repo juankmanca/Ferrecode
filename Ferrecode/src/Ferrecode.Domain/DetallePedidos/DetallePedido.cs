@@ -2,8 +2,9 @@
 {
     public sealed class DetallePedido
     {
-        public Guid IDPedidos { get; private set; }
-        public Guid IDProductos { get; private set; }
+        public Guid ID { get; private set; }
+        public Guid IDPedido { get; private set; }
+        public Guid IDProducto { get; private set; }
         public Cantidad? Cantidad { get; private set; }
     }
 }

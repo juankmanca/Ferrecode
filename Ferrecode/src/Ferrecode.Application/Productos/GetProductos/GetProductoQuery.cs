@@ -2,7 +2,7 @@
 
 namespace Ferrecode.Application.Productos.GetProductos
 {
-    public sealed record GetProductoQuery(Guid IDProducto) : IQuery<ProductoResponse>
+    public sealed record GetProductoQuery(Guid IDProducto) : IQuery<GetProductoResponse>
     {
     }
 }

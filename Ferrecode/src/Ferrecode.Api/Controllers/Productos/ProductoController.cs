@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Ferrecode.Application.Productos.CreateProducto;
+﻿using Ferrecode.Application.Productos.CreateProducto;
 using Ferrecode.Application.Productos.DeleteProducto;
 using Ferrecode.Application.Productos.GetProductos;
 using Ferrecode.Application.Productos.ManagmentInventory;
@@ -86,7 +85,7 @@ namespace Ferrecode.Api.Controllers.Productos
 
             var result = await _sender.Send(command, cancellationToken);
 
-            if(result.IsFailure) return BadRequest(result.Error);
+            if (result.IsFailure) return BadRequest(result.Error);
 
             return Ok();
         }
