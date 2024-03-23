@@ -1,6 +1,4 @@
-﻿using Ferrecode.Domain.Abstractions;
-
-namespace Ferrecode.Domain.Clientes
+﻿namespace Ferrecode.Domain.Clientes
 {
     public enum TiposDeDocumento
     {
@@ -14,11 +12,11 @@ namespace Ferrecode.Domain.Clientes
     {
         public TipoDeDocumento()
         {
-            
+
         }
 
         public int ID { get; set; }
         public string Nombre { get; set; } = string.Empty;
-        public string Acronimo { get; set;} = string.Empty;
+        public string Acronimo { get; set; } = string.Empty;
     }
 }

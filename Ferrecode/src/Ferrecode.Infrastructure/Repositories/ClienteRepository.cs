@@ -16,9 +16,10 @@ namespace Ferrecode.Infrastructure.Repositories
             return cliente;
         }
 
-        public async Task<Cliente?> GetByNameAsync(string Nombre, CancellationToken cancellationToken = default)
+        public async Task<Cliente?> GetByDocAsync(string documento, CancellationToken cancellationToken = default)
         {
-            var cliente = await _DbContext.Set<Cliente>().FirstOrDefaultAsync(x => x.Nombre!.ToLower() == Nombre.ToLower() && x.Status, cancellationToken);
+            // TODO: Como arreglar esta validacion???
+            var cliente = await _DbContext.Set<Cliente>().FirstOrDefaultAsync(x => x.Documento!.NumeroDocumento! == documento && x.Status, cancellationToken);
 
             return cliente;
         }

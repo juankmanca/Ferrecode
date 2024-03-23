@@ -4,9 +4,10 @@ namespace Ferrecode.Domain.Clientes
 {
     public record Documento(string NumeroDocumento, TiposDeDocumento TipoDocumento)
     {
+
         // Realizar aqui las respectivas validaciones segun el tipo de docuento
 
-        public bool EsValido()
+        public bool IsValid()
         {
             return TipoDocumento switch
             {
@@ -20,26 +21,20 @@ namespace Ferrecode.Domain.Clientes
 
         private bool ValidarCedulaCiudadania()
         {
-            if (NumeroDocumento.Length != 10)
-                return false;
-
             // Implementación de la validación de cédula de ciudadanía
-            return Regex.IsMatch(NumeroDocumento, @"^\d{10}$");
+            return Regex.IsMatch(NumeroDocumento, @"^\d{0,10}$");
         }
 
         private bool ValidarCedulaExtranjeria()
         {
-            if (NumeroDocumento.Length != 11)
-                return false;
-
             // Implementación de la validación de cédula de extranjería
-            return Regex.IsMatch(NumeroDocumento, @"^\d{11}$");
+            return Regex.IsMatch(NumeroDocumento, @"^\d{0,12}$");
         }
 
         private bool ValidarPasaporte()
         {
             // Implementación de la validación de pasaporte
-            return !string.IsNullOrEmpty(NumeroDocumento);
+            return Regex.IsMatch(NumeroDocumento, @"^\d{6,20}$");
         }
 
         private bool ValidarNIT()

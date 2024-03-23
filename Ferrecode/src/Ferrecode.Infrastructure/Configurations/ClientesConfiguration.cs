@@ -40,6 +40,7 @@ namespace Ferrecode.Infrastructure.Configurations
                 });
 
             builder.Property(x => x.Email).HasConversion(x => x!.Value, value => new Email(value));
+            builder.Property(x => x.Telefono).HasConversion(x => x!.Value, value => new Telefono(value));
 
             builder.HasOne<PuntoDeVenta>()
                 .WithMany()

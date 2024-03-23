@@ -25,6 +25,7 @@ namespace Ferrecode.Api.Controllers.Clientes
         {
             var command = new CreateClienteCommand(
                     request.Nombre,
+                    new Telefono(request.Telefono),
                     new Documento(request.NumeroDocumento, request.TipoDocumento),
                     new Direccion(request.Direccion, request.IDCiudad, request.IDDepartamento),
                     new Email(request.Email),

@@ -5,6 +5,8 @@ namespace Ferrecode.Api.Controllers.Clientes
     public class CreateClienteRequest
     {
         public string? Nombre { get; set; }
+
+        public string Telefono { get; set; } = string.Empty;
         
         //Documento
         public string NumeroDocumento { get; set; } = string.Empty;
